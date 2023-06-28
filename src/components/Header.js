@@ -10,7 +10,7 @@ function Header(props) {
   return (
     <header className="header">
       <img className="header__logo" src={logo} alt="Логотип" />
-      {loggedIn ?
+      {props.loggedIn ?
         <Info email={props.email} loggedIn={props.loggedIn} onSignOut={props.onSignOut} /> :
         (<>
           {

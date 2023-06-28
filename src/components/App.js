@@ -1,6 +1,5 @@
 ﻿import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
-import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -14,7 +13,7 @@ import {CurrentUserContext} from "../contexts/CurrentUserContext";
 import success from "../images/success.svg";
 import failure from "../images/failure.svg";
 import Login from "./Login";
-import Register from "./Rigister";
+import Register from "./Register";
 import * as auth from "../utils/Auth";
 import InfoTooltip from "./InfoTooltip";
 import ProtectedRoute from "./ProtectedRoute";
@@ -93,12 +92,13 @@ function App() {
     setIsProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsAvatarPopupOpen(false);
+    setIsInfoTooltipOpen(false);
     setSelectedCard(null);
   }
 
   function handleCardDelete(card) {
     api.deleteCard(card._id)
-      .then(() => {setCards(cards.filter((item) => item !== card))})
+      .then(() => {setCards(cards => cards.filter((item) => item !== card))})
       .catch((err) => console.log(err));
   }
 
@@ -109,7 +109,7 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-  const isOpen = isAvatarPopupOpen || isProfilePopupOpen || isAddPlacePopupOpen || selectedCard;
+  const isOpen = isAvatarPopupOpen || isProfilePopupOpen || isAddPlacePopupOpen || isInfoTooltipOpen || selectedCard;
 
   React.useEffect(() => {
 
@@ -199,10 +199,10 @@ function App() {
           <ProtectedRoute exact path='/' loggedIn={loggedIn} component={Main} onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} 
             onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} handleCardLike={handleCardLike} handleCardDelete={handleCardDelete} cards={cards} />
           <Route path='/sign-up'>
-            <Login isOpen={isEditProfilePopupOpen} onAuth={handleAuth} />
+            <Login isOpen={isProfilePopupOpen} onAuth={handleAuth} />
           </Route>
           <Route path='/sign-in'>
-            <Register isOpen={isEditProfilePopupOpen} onRegister={handleRegistration} isInfoTooltipOpen={isInfoTooltipOpen} />
+            <Register isOpen={isProfilePopupOpen} onRegister={handleRegistration} isInfoTooltipOpen={isInfoTooltipOpen} />
           </Route>
         </Switch>
         <Footer />

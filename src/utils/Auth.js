@@ -6,7 +6,6 @@ export const register = ( password, email ) => {
     {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ password: password, email: email })
@@ -27,7 +26,6 @@ export const authorize = ( password, email ) => {
     {
       method: 'POST',
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ password: password, email: email })
@@ -53,7 +51,6 @@ export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
-      'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
