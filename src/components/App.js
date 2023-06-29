@@ -157,8 +157,8 @@ function App() {
 
   function handleRegistration(password, email) {
     auth.register(password, email)
-      .then((result) => {
-        setEmail(result.data.email);
+      .then((res) => {
+        setEmail(res.data.email);
         setMessage({ img: success, text: 'Вы успешно зарегистрировались!' });
         history.push('/sign-in');
       })
