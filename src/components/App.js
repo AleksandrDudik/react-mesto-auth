@@ -98,7 +98,7 @@ function App() {
 
   function handleCardDelete(card) {
     api.deleteCard(card._id)
-      .then(() => {setCards(cards => cards.filter((item) => item !== card))})
+      .then(() => {setCards(cards.filter((item) => item !== card))})
       .catch((err) => console.log(err));
   }
 
@@ -203,6 +203,9 @@ function App() {
           </Route>
           <Route path='/sign-in'>
             <Register isOpen={isProfilePopupOpen} onRegister={handleRegistration} isInfoTooltipOpen={isInfoTooltipOpen} />
+          </Route>
+          <Route path='/'>
+            <Login isOpen={isProfilePopupOpen} onAuth={handleAuth} />
           </Route>
         </Switch>
         <Footer />
