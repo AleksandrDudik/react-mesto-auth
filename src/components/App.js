@@ -197,7 +197,7 @@ function App() {
         <Header loggedIn={loggedIn} email={email} onSignOut={onSignOut} />
         <Switch>
           <ProtectedRoute exact path='/' loggedIn={loggedIn} component={Main} onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} 
-            onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} handleCardLike={handleCardLike} handleCardDelete={handleCardDelete} cards={cards} />
+            onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick} onCardLike={handleCardLike} onCardDelete={handleCardDelete} selectedCard={selectedCard} cards={cards} />
           <Route path='/sign-up'>
             <Login isOpen={isProfilePopupOpen} onAuth={handleAuth} />
           </Route>
